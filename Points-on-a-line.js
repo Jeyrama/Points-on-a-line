@@ -21,3 +21,13 @@ function onLine(points) {
 }
 
 // or
+
+const onLine = ([[x1, y1] = [], ...p]) => {
+  const [[x2, y2] = [], ...pR] = p.filter(([pX, pY]) => pX !== x1 || pY !== y1);
+  
+  // y = kx + b;
+  const k = (y2 - y1) / (x2 - x1);
+  const b = y2 - k * x2;
+  
+  return pR.every(([x, y]) => Number.isFinite(k) ? y === k * x + b : x === x1);
+}
